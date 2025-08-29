@@ -1,0 +1,13 @@
+Checkout ->
+Man ska fylla i Namn, efternamn
+Företag(Optional)
+Telefonnummer
+Email-adress
+
+Paket-Silver och Paket-guld (Som bronspaketet)
+
+Mer Om moduvo
+
+Fixa mobiltillgänglighet på om moduvo
+
+Href till allt i footern

@@ -1,0 +1,198 @@
+.title:hover {
+    background: var(--darkorange);
+}
+
+.navbar{
+    background: var(--black);
+}
+
+.navbar__logo {
+    color: var(--white);
+}
+
+.navbar__link {
+    color: var(--white);
+}
+
+.navbar__link:hover {
+    color: var(--darkorange);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar__menu.active{
+        background: var(--black);
+    }
+
+    .navbar__toggle .bar{
+        background: var(--white);
+    }
+}
+
+.hero{
+    background: linear-gradient(to right, rgba(0,0,0, 0.4), rgba(0,0,0,0.3)), url('./Bilder/Liggande/flod-tree.jpg');
+}
+
+.hero__content {
+    color: var(--white);
+}
+
+.button{
+    background: var(--black);
+    color: var(--white);
+}
+
+.button:hover {
+    background: var(--darkorange);
+}
+
+.topline {
+    color: var(--darkorange);
+}
+
+.fa-check-circle {
+    color: var(--darkorange);
+}
+
+.tjanster {
+    background: var(--black);
+    color: var(--white);
+}
+
+.tjanster__kort{
+    background: var(--white);
+    color: var(--black);
+}
+
+.team__card p{
+    color: var(--white);
+}
+
+.kort-ikon{
+    color: var(--darkorange);
+}
+
+.tjanster__kort h4 {
+    color: var(--white);
+}
+
+.email {
+    background: linear-gradient(
+        180deg, 
+    rgba(0,0,0, 0.6) 0%, 
+    rgba(0,0,0, 0.6) 35%,
+    rgba(0,0,0, 0.1) 100%
+    ), 
+    url('./Bilder/Liggande/pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg') no-repeat center;
+    color: var(--white);
+}
+
+.footer{
+    color: var(--white);
+    background: var(--black);
+}
+
+.footer__desc h1 {
+    color: var(--darkorange);
+}
+
+.footer__link{
+    color: rgb(242, 242, 242);
+}
+
+.footer__link:hover {
+    color: var(--darkorange);
+}
+
+.moduvo{
+    background: linear-gradient(to right, rgba(0,0,0, 0.4), rgba(0,0,0,0.3)), url('./Bilder/Liggande/silas-baisch-Wn4ulyzVoD4-unsplash.jpg');
+}
+
+.moduvo h1 {
+    color: var(--darkorange);
+}
+
+.moduvo p {
+    color: var(--white);
+}
+
+.brons {
+    background: linear-gradient(to right, rgba(0,0,0, 0.4), rgba(0,0,0,0.3)), url('./Bilder/Liggande/berg-with-snow.jpg');
+    color: var(--white);
+}
+
+.brons__kort{
+    background: var(--black);
+    color: var(--darkorange);
+}
+
+.brons-kort-ikon {
+    color: var(--darkorange);
+}
+
+.brons__button{
+    background: var(--darkorange);
+    color: var(--white);
+}
+
+.brons__button:hover {
+    background: var(--darkblue);
+}
+
+.silver {
+    background: linear-gradient(to right, rgba(0,0,0, 0.4), rgba(0,0,0,0.3)), url('./Bilder/Liggande/sergey-pesterev-JV78PVf3gGI-unsplash.jpg');
+    color: var(--white);
+}
+
+.silver__kort{
+    background: var(--black);
+    color: silver;
+}
+
+.silver-kort-ikon {
+    color: silver;
+}
+
+.silver__button{
+    background: silver;
+    color: var(--white);
+}
+
+.silver__button:hover {
+    background: var(--darkblue);
+}
+.guld {
+    background: linear-gradient(to right, rgba(0,0,0, 0.4), rgba(0,0,0,0.3)), url('./Bilder/Liggande/flod-tree.jpg');
+    color: var(--white);
+}
+
+.guld__kort{
+    background: var(--black);
+    color: gold;
+}
+
+.guld-kort-ikon {
+    color: gold;
+}
+
+.guld__button{
+    background: gold;
+    color: var(--white);
+}
+
+.guld__button:hover {
+    background: var(--darkorange);
+}
+
+.kontakt{
+    background: var(--black);
+    color: var(--white);
+}
+
+.kontakt__kort{
+    background: var(--white);
+    color: var(--black);
+}
+
+.kort-ikon{
+    color: var(--darkorange);
+}

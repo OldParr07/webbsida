@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Moduvo</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+        <script src="https://kit.fontawesome.com/10235da58b.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <!--Navigerings sektion-->
+        <nav class="navbar">
+            <a href="/Home.html" class="navbar__logo">Moduvo</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span> 
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="navbar__menu">
+                <a href="Home.html" class="navbar__link animate-navbar">Hem</a>
+                <a href="Paket.html" class="navbar__link animate-navbar">Paket</a>
+                <a href="ommoduvo.html" class="navbar__link animate-navbar">Om Moduvo</a>
+                <a href="kontakt.html" class="navbar__link animate-navbar">Kontakt</a>
+            </div>
+        </nav>
+            <!-- API Sektion-->
+            <section class="valuta">
+                <div class="valuta__wrapper">
+                  <h1>Valutakonverterare</h1>
+              
+                  <label for="amount">Belopp:</label>
+                  <input type="number" id="amount" value="1" min="0" />
+              
+                  <label for="fromCurrency">Från valuta:</label>
+                  <select id="fromCurrency"></select>
+              
+                  <label for="toCurrency">Till valuta:</label>
+                  <select id="toCurrency"></select>
+              
+                  <button onclick="convert()">Konvertera</button>
+              
+                  <div id="result"></div>
+                </div>
+              </section>
+            
+            <script>
+                let conversionRates = {};
+                let baseCurrency = "";
+            
+                fetch('valuta.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.conversion_rates) {
+                            document.getElementById('result').innerHTML = "<p>Fel: Valutakurser saknas i JSON-filen.</p>";
+                            return;
+                        }
+            
+                        conversionRates = data.conversion_rates;
+                        baseCurrency = data.base_code;
+            
+                        const currencies = Object.keys(conversionRates);
+                        const fromSelect = document.getElementById('fromCurrency');
+                        const toSelect = document.getElementById('toCurrency');
+            
+                        currencies.forEach(currency => {
+                            const optionFrom = document.createElement('option');
+                            optionFrom.value = currency;
+                            optionFrom.textContent = currency;
+                            fromSelect.appendChild(optionFrom);
+            
+                            const optionTo = document.createElement('option');
+                            optionTo.value = currency;
+                            optionTo.textContent = currency;
+                            toSelect.appendChild(optionTo);
+                        });
+            
+                        fromSelect.value = baseCurrency;
+                        toSelect.value = "SEK";
+                    })
+                    .catch(err => {
+                        console.error('❌ Fel vid hämtning:', err);
+                        document.getElementById('result').innerText = "Kunde inte hämta valutadata.";
+                    });
+            
+                function convert() {
+                    const amount = parseFloat(document.getElementById('amount').value);
+                    const from = document.getElementById('fromCurrency').value;
+                    const to = document.getElementById('toCurrency').value;
+            
+                    if (isNaN(amount) || amount <= 0) {
+                        document.getElementById('result').innerText = "Ange ett giltigt belopp.";
+                        return;
+                    }
+            
+                    if (from === to) {
+                        document.getElementById('result').innerText = "Välj två olika valutor.";
+                        return;
+                    }
+            
+                    const rateFrom = conversionRates[from];
+                    const rateTo = conversionRates[to];
+            
+                    if (!rateFrom || !rateTo) {
+                        document.getElementById('result').innerText = "Valutakod saknas i datan.";
+                           return;
+                    }
+            
+                    const exchangeRate = rateTo / rateFrom;
+                    const convertedAmount = amount * exchangeRate;
+            
+                    document.getElementById('result').innerText =
+                        `${amount} ${from} = ${convertedAmount.toFixed(2)} ${to}`;
+                }
+            </script>
+            
+ <!-- GIF Sektion -->
+ <div id="gif-container">
+    <h2>GIF Generator</h2>
+    <p>Skriv ett ord på engelska för att få en GIF!</p>
+    <input type="text" id="inputText" placeholder="Skriv något...">
+    <button onclick="generateGIF()">Hämta GIF</button>
+    <div id="gif-display"></div> <!-- Här visas GIF:arna -->
+</div>
+
+<script>
+    function generateGIF() {
+        // Hämta användarens text från input-fältet
+        const searchTerm = document.getElementById("inputText").value;
+        const gifContainer = document.getElementById("gif-display");
+        
+        // Om det inte finns någon text, visa ett meddelande
+        if (!searchTerm) {
+            alert("Var vänlig och skriv något i textfältet!");
+            return;
+        }
+
+        // Rensa tidigare GIF
+        gifContainer.innerHTML = "<p>Laddar...</p>";
+
+        // GIF API-url
+        const apiKey = '0z7Yn02pLLSxfaHzjShKQYVPkQN8V56H';
+        const apiUrl = `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(searchTerm)}&api_key=${apiKey}&limit=1`;
+
+        // Hämta GIF från API
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.data.length > 0) {
+                    const gifUrl = data.data[0].images.original.url;
+                    const gifImage = document.createElement("img");
+                    gifImage.src = gifUrl;
+                    gifImage.alt = `GIF för ${searchTerm}`;
+                    
+                    // Rensa meddelandet och visa GIF
+                    gifContainer.innerHTML = '';
+                    gifContainer.appendChild(gifImage);
+                } else {
+                    gifContainer.innerHTML = "<p>Ingen GIF hittades för den sökningen.</p>";
+                }
+            })
+            .catch(error => {
+                gifContainer.innerHTML = "<p>Ett fel inträffade. Försök igen!</p>";
+                console.error("Fel vid hämtning av GIF:", error);
+            });
+    }
+</script>
+ <!-- Quote Sektion-->
+ <div id="quote-container">
+    <h2>Slumpmässigt Citat</h2>
+    <p id="quote-text">"Vänta inte på rätt tillfälle, skapa det." - Okänd</p>
+    <button id="new-quote-btn" onclick="generateRandomQuote()">Hämta nytt citat</button>
+</div>
+
+<script>
+    // Lista med citat
+    const quotes = [
+        '""Det är aldrig för sent att bli den man kunde ha varit." – George Eliot',
+        '"Allt du kan föreställa dig är verkligt." – Pablo Picassofrey',
+        '"För varje svårighet finns en lösning." – Svenska ordspråk',
+        '"Det bästa sättet att förutsäga framtiden är att skapa den." – Peter Drucker',
+        '"Du missar 100% av de chanser du inte tar." - Wayne Gretzky',
+        '"Jag har inte misslyckats. Jag har bara funnit 10.000 sätt som inte fungerar." – Thomas Edison',
+        '"Minns igår, Dröm om imorgon, Lev idag"',
+        '"Skratta ofta, för du lever bara en gång." - Unknown',
+    ];
+
+    // Funktion för att hämta ett slumpmässigt citat
+    function generateRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const randomQuote = quotes[randomIndex];
+        document.getElementById('quote-text').textContent = randomQuote;
+    }
+</script>
+
+<!-- epost Sektion-->
+<form id="form">
+    <div class="field">
+      <label for="name">Ange ditt namn</label>
+      <input type="text" name="name" id="name">
+    </div>
+
+    <div class="field">
+      <label for="message">Ange vad du vill skicka</label>
+      <input type="text" name="message" id="message">
+    </div>
+
+    <div class="field">
+      <label for="title">Ange din titel</label>
+      <input type="text" name="title" id="title">
+    </div>
+
+    <div class="field">
+      <label for="email">Ange till vilken email du ska skicka</label>
+      <input type="text" name="email" id="email">
+    </div>
+  
+    <input type="submit" id="button" value="Skicka mail" >
+  </form>
+  
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  
+  <script type="text/javascript">
+    emailjs.init('F8nYWDTKZLjHoUxZM')
+  </script>
+
+<!-- Footer Sektion-->
+<div class="footer">
+        <div class="footer__wrapper">
+            <div class="footer__desc">
+                <h1>Moduvo</h1>
+                <p>Moduvo är endast ett digitalt företag utan huvudkontor</p>
+                <p id="phone">(+46) 070 915 08 14</p>
+            </div>
+            <div class="footer__links">
+                <h2 class="footer__title">Kontakta oss</h2>
+                <a href="/kontakt.html" class="footer__link">Kontakt</a>
+                <a href="/kontakt.html" class="footer__link">Support</a>
+                <a href="/kontakt.html" class="footer__link">Sponsorer</a>
+            </div>
+        </div>
+        <div class="footer__wrapper">
+            <div class="footer__links">
+                <h2 class="footer__title">Medlemsskap</h2>
+                <a href="/Paket.html" class="footer__link">Priser</a>
+                <a href="/Paket.html" class="footer__link">Plans</a>
+                <a href="/kontakt.html" class="footer__link">FAQ</a>
+            </div>
+            <div class="footer__links">
+                <h2 class="footer__title">Sociala Medier</h2>
+                <a href="/kontakt.html" class="footer__link">instagram</a>
+                <a href="/kontakt.html" class="footer__link">X</a>
+                <a href="/kontakt.html" class="footer__link">Youtube</a>
+                <a href="/kontakt.html" class="footer__link">Twitch</a>
+            </div>
+        </div>
+       </div>
+       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+        <script src="app.js"></script>
+        <script src="animations.js"></script>
+    </body>
+</html>
