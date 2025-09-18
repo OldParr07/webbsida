@@ -1,3 +1,23 @@
+<?php
+if (isset($_GET['prod'])) {
+    $product = $_GET['prod'];
+} else {
+    $product = "Inget paket valt";
+}
+function checkmark($value) {
+    switch ($value) {
+        case "Brons":
+            return "✓";
+        case "Silver":
+            return "✓✓";
+        case "Guld":
+            return "✓✓✓";
+        default:
+            return "✕";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,7 +33,7 @@
     <body>
         <!--Navigerings sektion-->
         <nav class="navbar">
-            <a href="/Home.html" class="navbar__logo">Moduvo</a>
+            <a href="Home.html" class="navbar__logo">Moduvo</a>
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span> 
                 <span class="bar"></span>
@@ -26,7 +46,51 @@
                 <a href="kontakt.html" class="navbar__link animate-navbar">Kontakt</a>
             </div>
         </nav>
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- Checkout Sektion-->
+        <div class="checkout-start">
+            <h1>Registreringsformulär</h1>
+            <p>Fyll i kontaktuppgifter</p>
+        </div>
+        <div>
+            <div class="checkout-namn">
+                <form action="data.php" method="post">
+                    <label for="name">Namn:</label>
+                    <input type="name" name="name" class="checkout-input-name" >
+                    <input type="hidden" name="product" value="<?=$product?>">
+                    <label for="email">Epost-adress:</label>
+                    <input type="email" name="email" class="checkout-input-email">
+                    <div>
+                    <label for="valid">Ditt valda paket:<?=$product?></label>
+                    <input type="checkbox" name="valid" value="<?=$product?>" class ="checkout-checkbox" required></div>
+                    <input type="submit" value="Skicka" class="checkout-button">
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <!-- Footer Sektion-->
       <div class="footer">
@@ -38,24 +102,24 @@
             </div>
             <div class="footer__links">
                 <h2 class="footer__title">Kontakta oss</h2>
-                <a href="/kontakt.html" class="footer__link">Kontakt</a>
-                <a href="/kontakt.html" class="footer__link">Support</a>
-                <a href="/kontakt.html" class="footer__link">Sponsorer</a>
+                <a href="kontakt.html" class="footer__link">Kontakt</a>
+                <a href="kontakt.html" class="footer__link">Support</a>
+                <a href="kontakt.html" class="footer__link">Sponsorer</a>
             </div>
         </div>
         <div class="footer__wrapper">
             <div class="footer__links">
                 <h2 class="footer__title">Medlemsskap</h2>
-                <a href="/Paket.html" class="footer__link">Priser</a>
-                <a href="/Paket.html" class="footer__link">Plans</a>
-                <a href="/kontakt.html" class="footer__link">FAQ</a>
+                <a href="Paket.html" class="footer__link">Priser</a>
+                <a href="Paket.html" class="footer__link">Plans</a>
+                <a href="kontakt.html" class="footer__link">FAQ</a>
             </div>
             <div class="footer__links">
                 <h2 class="footer__title">Sociala Medier</h2>
-                <a href="/kontakt.html" class="footer__link">instagram</a>
-                <a href="/kontakt.html" class="footer__link">X</a>
-                <a href="/kontakt.html" class="footer__link">Youtube</a>
-                <a href="/kontakt.html" class="footer__link">Twitch</a>
+                <a href="kontakt.html" class="footer__link">instagram</a>
+                <a href="kontakt.html" class="footer__link">X</a>
+                <a href="kontakt.html" class="footer__link">Youtube</a>
+                <a href="kontakt.html" class="footer__link">Twitch</a>
             </div>
         </div>
        </div>
