@@ -77,7 +77,7 @@ gsap.from('.animate-navbar', {
 
 gsap.from('.animate-brons', {
     scrollTrigger: '.animate-brons',
-    duration: 2.5,
+    duration: 1.0,
     opacity: 0.4,
     x: -2000,
     stagger: 0.6,
@@ -95,7 +95,7 @@ gsap.from('.animate-brons-kort', {
 
 gsap.from('.animate-silver', {
     scrollTrigger: '.animate-silver',
-    duration: 2.5,
+    duration: 1.0,
     opacity: 0.4,
     x: -2000,
     stagger: 0.6,
@@ -104,7 +104,7 @@ gsap.from('.animate-silver', {
 
 gsap.from('.animate-silver-kort', {
     scrollTrigger: '.animate-silver-kort',
-    duration: 2.6,
+    duration: 1.2,
     opacity: 0.4,
     y: -2000,
     stagger: 0.6,
