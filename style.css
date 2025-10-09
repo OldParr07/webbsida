@@ -24,7 +24,9 @@
     padding: 0;
     font-family: "Poppins", sans-serif;
 }
-
+.hero__content *{
+    overflow:hidden;
+}
 
 .navbar {
     height: 60px;
@@ -72,7 +74,7 @@
     margin-bottom: 3rem;
 }
 
-.button {
+.button, .email-button {
     padding: 1rem 3rem;
     border: none;
     font-size: 1rem;
@@ -412,7 +414,7 @@ form {
 .brons__kort {
     padding: 2rem;
     min-height: 450px;
-    width: 325px;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -479,7 +481,7 @@ form {
 .silver__kort {
     padding: 2rem;
     min-height: 450px;
-    width: 325px;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -547,7 +549,7 @@ form {
 .guld__kort {
     padding: 2rem;
     min-height: 450px;
-    width: 325px;
+    width: 100%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -742,12 +744,4 @@ form {
 
 .checkout-button:hover {
   background: var(--hover-orange);
-}
-
-@media (max-width: 600px) {
-  .checkout-start,
-  .checkout-namn {
-    padding: 1rem;
-    max-width: 95vw;
-  }
 }
